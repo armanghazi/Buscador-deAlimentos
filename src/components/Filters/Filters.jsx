@@ -1,83 +1,69 @@
 import React from 'react';
 import './Filters.styles.css';
 
-const Filters = ({
-  novaFilter,
-  onNovaChange,
-  nutriScoreFilter,
-  onNutriScoreChange,
-  ecoScoreFilter,
-  onEcoScoreChange,
-  onFilterClick
-}) => {
-  return (
-    <div className="filters-container">
-      <div className="filter-group">
-        <h3 className="filter-title">Clasificación NOVA</h3>
-        <p className="filter-description">
-          Clasifica según su grado de procesamiento:
-       </p>
-        <select
-          value={novaFilter}
-          onChange={(e) => onNovaChange(e.target.value)}
-          className="filter-select"
-        >
-          <option value="">Todos</option>
-          <option value="1">1 - Sin procesar</option>
-          <option value="2">2 - Ingredientes culinarios</option>
-          <option value="3">3 - Procesados</option>
-          <option value="4">4 - Ultra-procesados</option>
-        </select>
-      </div>
-
-      <div className="filter-group">
-        <h3 className="filter-title">Nutri-Score</h3>
-        <p className="filter-description">
-          Sistema de etiquetado nutricional:
-        </p>
-        <select
-          value={nutriScoreFilter}
-          onChange={(e) => onNutriScoreChange(e.target.value)}
-          className="filter-select"
-        >
-          <option value="">Todos</option>
-          <option value="a">A - Excelente calidad nutricional</option>
-          <option value="b">B - Buena calidad nutricional</option>
-          <option value="c">C - Calidad nutricional media</option>
-          <option value="d">D - Baja calidad nutricional</option>
-          <option value="e">E - Calidad nutricional muy baja</option>
-        </select>
-      </div>
-
-      <div className="filter-group">
-        <h3 className="filter-title">Eco-Score</h3>
-        <p className="filter-description">
-          Impacto ambiental del producto:
-        </p>
-        <select
-          value={ecoScoreFilter}
-          onChange={(e) => onEcoScoreChange(e.target.value)}
-          className="filter-select"
-        >
-          <option value="">Todos</option>
-          <option value="a">A - Impacto ambiental muy bajo</option>
-          <option value="b">B - Impacto ambiental bajo</option>
-          <option value="c">C - Impacto ambiental medio</option>
-          <option value="d">D - Impacto ambiental alto</option>
-          <option value="e">E - Impacto ambiental muy alto</option>
-        </select>
-      </div>
-
-      <div className="filter-button-container">
-        <button 
-          onClick={onFilterClick}
-          className="filter-button"
-        >
-          Filtrar Productos
-        </button>
-      </div>
-    </div>
-  );
+const filterOptions = {
+  nova: [
+    { value: '1', label: '1 - Sin procesar' },
+    { value: '2', label: '2 - Ingredientes culinarios' },
+    { value: '3', label: '3 - Procesados' },
+    { value: '4', label: '4 - Ultra-procesados' }
+  ],
+  nutriScore: [
+    { value: 'a', label: 'A - Excelente calidad nutricional' },
+    { value: 'b', label: 'B - Buena calidad nutricional' },
+    { value: 'c', label: 'C - Calidad nutricional media' },
+    { value: 'd', label: 'D - Baja calidad nutricional' },
+    { value: 'e', label: 'E - Calidad nutricional muy baja' }
+  ],
+  ecoScore: [
+    { value: 'a', label: 'A - Impacto ambiental muy bajo' },
+    { value: 'b', label: 'B - Impacto ambiental bajo' },
+    { value: 'c', label: 'C - Impacto ambiental medio' },
+    { value: 'd', label: 'D - Impacto ambiental alto' },
+    { value: 'e', label: 'E - Impacto ambiental muy alto' }
+  ]
 };
 
-export default Filters; 
+const FilterGroup = ({ title, description, value, onChange, options }) => (
+  <div className="filter-group">
+    <h3 className="filter-title">{title}</h3>
+    <p className="filter-description">{description}</p>
+    <select value={value} onChange={(e) => onChange(e.target.value)} className="filter-select">
+      <option value="">Todos</option>
+      {options.map(option => (
+        <option key={option.value} value={option.value}>{option.label}</option>
+      ))}
+    </select>
+  </div>
+);
+
+const Filters = ({ novaFilter, onNovaChange, nutriScoreFilter, onNutriScoreChange, ecoScoreFilter, onEcoScoreChange, onFilterClick }) => (
+  <div className="filters-container">
+    <FilterGroup 
+      title="Clasificación NOVA"
+      description="Clasifica según su grado de procesamiento:"
+      value={novaFilter}
+      onChange={onNovaChange}
+      options={filterOptions.nova}
+    />
+    <FilterGroup 
+      title="Nutri-Score"
+      description="Sistema de etiquetado nutricional:"
+      value={nutriScoreFilter}
+      onChange={onNutriScoreChange}
+      options={filterOptions.nutriScore}
+    />
+    <FilterGroup 
+      title="Eco-Score"
+      description="Impacto ambiental del producto:"
+      value={ecoScoreFilter}
+      onChange={onEcoScoreChange}
+      options={filterOptions.ecoScore}
+    />
+    <div className="filter-button-container">
+      <button onClick={onFilterClick} className="filter-button">Filtrar Productos</button>
+    </div>
+  </div>
+);
+
+export default Filters;

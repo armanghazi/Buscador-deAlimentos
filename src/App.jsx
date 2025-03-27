@@ -8,8 +8,16 @@ import './App.styles.css';
 const App = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const [darkMode, setDarkMode] = useState(false);
+  const [favorites, setFavorites] = useState(() => {
+    // Load favorites from localStorage on initial render
+    const savedFavorites = localStorage.getItem('favorites');
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
+  const [darkMode, setDarkMode] = useState(() => {
+    // Load dark mode from localStorage
+    const savedDarkMode = localStorage.getItem('darkMode');
+    return savedDarkMode ? JSON.parse(savedDarkMode) : false;
+  });
   const [novaFilter, setNovaFilter] = useState('');
   const [nutriScoreFilter, setNutriScoreFilter] = useState('');
   const [ecoScoreFilter, setEcoScoreFilter] = useState('');
@@ -23,7 +31,14 @@ const App = () => {
 
   useEffect(() => {
     document.body.classList.toggle('dark-mode', darkMode);
+    // Save dark mode to localStorage
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
+
+  // Save favorites to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   const loadInitialProducts = async () => {
     setIsLoading(true);
@@ -31,19 +46,14 @@ const App = () => {
     try {
       console.log('Starting to load products...');
       const products = await getAllFoods();
-      console.log('Received products in App:', {
-        isArray: Array.isArray(products),
-        length: products?.length,
-        firstItem: products?.[0]
-      });
-
-      if (Array.isArray(products) && products.length > 0) {
-        setProducts(products);
-        setFilteredProducts(products);
-      } else {
-        console.error('No valid products received:', products);
-        throw new Error('No se encontraron productos válidos');
+      
+      if (!products || products.length === 0) {
+        throw new Error('No se encontraron productos');
       }
+
+      console.log('Setting products:', products.length);
+      setProducts(products);
+      setFilteredProducts(products);
     } catch (error) {
       console.error('Error loading products:', error);
       setError(`Error al cargar los productos: ${error.message}`);
@@ -92,7 +102,7 @@ const App = () => {
   return (
     <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
       <header className="app-header">
-        <h1>OpenFoodFacts - Buscador</h1>
+        <h1>Buscador Datos sobre los alimentos</h1>
         <button
           onClick={() => setDarkMode(!darkMode)}
           className="theme-toggle-button"
@@ -107,13 +117,13 @@ const App = () => {
           className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
           onClick={() => setActiveTab('all')}
         >
-          Todos los productos
+          Todos los productos ({products.length})
         </button>
         <button
           className={`tab-button ${activeTab === 'favorites' ? 'active' : ''}`}
           onClick={() => setActiveTab('favorites')}
         >
-          Favoritos
+          Favoritos ({favorites.length})
         </button>
       </div>
 
