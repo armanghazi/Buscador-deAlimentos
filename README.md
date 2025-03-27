@@ -65,26 +65,6 @@ http://localhost:5173
 - Vista separada para productos favoritos
 - Persistencia de favoritos en el navegador
 
-## 🎨 Diseño y UI/UX
-
-### Tema Claro
-- Fondo blanco con texto oscuro
-- Sombras suaves para profundidad
-- Colores primarios en azul
-- Contraste optimizado para legibilidad
-
-### Tema Oscuro
-- Fondo oscuro con texto claro
-- Sombras más pronunciadas
-- Colores adaptados para modo oscuro
-- Reducción de brillo para comodidad visual
-
-### Diseño Responsivo
-- Grid adaptativo para productos
-- Diseño de una columna en móviles
-- Menús y controles optimizados para touch
-- Espaciado y tipografía responsivos
-
 ## 🔧 Estructura del Proyecto
 
 ```
