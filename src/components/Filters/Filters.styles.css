@@ -1,0 +1,101 @@
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px;
+  background-color: var(--filter-background);
+  border-radius: 8px;
+}
+
+.filter-group {
+  flex: 1;
+  min-width: 250px;
+  background-color: var(--card-background);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.filter-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--text-color);
+}
+
+.filter-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0 0 16px 0;
+  line-height: 1.4;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--select-border);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  color: var(--text-color);
+  background-color: var(--select-background);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.filter-select:hover {
+  border-color: var(--select-hover);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--select-hover);
+  box-shadow: 0 0 0 2px var(--select-focus);
+}
+
+.filter-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.filter-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-width: 200px;
+}
+
+.filter-button:hover {
+  background-color: var(--primary-hover);
+}
+
+@media (max-width: 600px) {
+  .filters-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .filter-group {
+    min-width: 100%;
+  }
+
+  .filter-button-container {
+    margin-top: 8px;
+  }
+
+  .filter-button {
+    width: 100%;
+    padding: 16px;
+  }
+} 

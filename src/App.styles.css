@@ -1,0 +1,239 @@
+:root {
+  --primary-color: #1976d2;
+  --primary-hover: #1565c0;
+  --text-color: #333;
+  --text-secondary: #666;
+  --background-color: #fff;
+  --card-background: #fff;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --filter-background: #f5f5f5;
+  --select-background: #fff;
+  --select-border: #ddd;
+  --select-hover: #1976d2;
+  --select-focus: rgba(25, 118, 210, 0.1);
+  --header-background: #fff;
+  --tabs-background: #fff;
+  --tab-hover-bg: rgba(25, 118, 210, 0.04);
+}
+
+.dark-mode {
+  --primary-color: #64b5f6;
+  --primary-hover: #42a5f5;
+  --text-color: #fff;
+  --text-secondary: #b0b0b0;
+  --background-color: #121212;
+  --card-background: #1e1e1e;
+  --border-color: #333;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --filter-background: #1e1e1e;
+  --select-background: #2d2d2d;
+  --select-border: #404040;
+  --select-hover: #64b5f6;
+  --select-focus: rgba(100, 181, 246, 0.1);
+  --header-background: #1e1e1e;
+  --tabs-background: #1e1e1e;
+  --tab-hover-bg: rgba(100, 181, 246, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  flex: 1;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--header-background);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.app-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.theme-toggle-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  color: var(--text-color);
+}
+
+.theme-toggle-button:hover {
+  background-color: var(--tab-hover-bg);
+}
+
+.tabs-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background-color: var(--tabs-background);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.tab-button:hover {
+  color: var(--primary-color);
+  background-color: var(--tab-hover-bg);
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+  background-color: var(--tab-hover-bg);
+}
+
+.tab-button.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.loading-message,
+.error-message,
+.no-results-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  background-color: var(--card-background);
+  border-radius: 8px;
+  margin: 1rem;
+  box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.error-message {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.no-results-message {
+  color: var(--text-secondary);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  border: 4px solid var(--filter-background);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.retry-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+  background-color: var(--primary-hover);
+}
+
+.loading-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  .app-title {
+    font-size: 1.5rem;
+  }
+
+  .tabs-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .tab-button {
+    width: 100%;
+    text-align: left;
+  }
+
+  .tab-button.active::after {
+    display: none;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+} 

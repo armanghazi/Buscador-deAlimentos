@@ -1,0 +1,146 @@
+.food-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-background);
+  overflow: hidden;
+}
+
+.food-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.food-card-image-container {
+  height: 140px;
+  background-color: var(--filter-background);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.food-card-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.food-card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+}
+
+.food-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.2;
+  color: var(--text-color);
+}
+
+.scores-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.score-item {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.score-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.score-value {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.favorite-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  transition: transform 0.2s ease;
+  color: var(--primary-color);
+}
+
+.favorite-button:hover {
+  transform: scale(1.1);
+}
+
+.details-button {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.details-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .food-card-image-container {
+    height: 120px;
+  }
+
+  .food-card-content {
+    padding: 12px;
+  }
+
+  .food-card-title {
+    font-size: 0.875rem;
+  }
+
+  .scores-container {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .score-item {
+    flex: 1 1 calc(50% - 4px);
+  }
+
+  .score-label {
+    font-size: 0.7rem;
+  }
+
+  .score-value {
+    font-size: 0.8rem;
+  }
+} 
