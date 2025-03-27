@@ -18,7 +18,6 @@ Una aplicación web moderna para buscar y filtrar productos alimenticios utiliza
 ## 🛠️ Tecnologías Utilizadas
 
 - React.js
-- Material-UI
 - CSS Variables para temas
 - OpenFoodFacts API
 - CSS Grid y Flexbox para layouts responsivos
@@ -66,26 +65,6 @@ http://localhost:5173
 - Vista separada para productos favoritos
 - Persistencia de favoritos en el navegador
 
-## 🎨 Diseño y UI/UX
-
-### Tema Claro
-- Fondo blanco con texto oscuro
-- Sombras suaves para profundidad
-- Colores primarios en azul
-- Contraste optimizado para legibilidad
-
-### Tema Oscuro
-- Fondo oscuro con texto claro
-- Sombras más pronunciadas
-- Colores adaptados para modo oscuro
-- Reducción de brillo para comodidad visual
-
-### Diseño Responsivo
-- Grid adaptativo para productos
-- Diseño de una columna en móviles
-- Menús y controles optimizados para touch
-- Espaciado y tipografía responsivos
-
 ## 🔧 Estructura del Proyecto
 
 ```
@@ -130,10 +109,9 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ## 👥 Autores
 
-- Tu Nombre - [@tu-usuario](https://github.com/tu-usuario)
+- Arman Ghaziaskari Naeini - [@armanghazi](https://github.com/armanghazi)
 
 ## 🙏 Agradecimientos
 
 - OpenFoodFacts por proporcionar la API y los datos
-- Material-UI por los componentes y el sistema de temas
 - La comunidad de React por las herramientas y recursos
