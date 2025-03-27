@@ -24,13 +24,20 @@ const FoodCard = ({
           alt={product_name}
           className="food-card-image"
           onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/200x200?text=No+Image';
+            e.target.src = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
           }}
         />
       </div>
       <div className="food-card-content">
         <h3 className="food-card-title">{product_name}</h3>
         <div className="food-card-scores">
+        </div>
+          <div className="score-container">
+            <span className="score-label">NOVA:</span>
+            <span className={`score-value nova-${nova_group || 'unknown'}`}>
+              {nova_group || 'N/A'}
+            </span>
+          </div>
           <div className="score-container">
             <span className="score-label">Nutri-Score:</span>
             <span className={`score-value ${nutriscore_grade || 'unknown'}`}>
@@ -42,13 +49,6 @@ const FoodCard = ({
             <span className={`score-value ${ecoscore_grade || 'unknown'}`}>
               {ecoscore_grade ? ecoscore_grade.toUpperCase() : 'N/A'}
             </span>
-          </div>
-          <div className="score-container">
-            <span className="score-label">NOVA:</span>
-            <span className={`score-value nova-${nova_group || 'unknown'}`}>
-              {nova_group || 'N/A'}
-            </span>
-          </div>
         </div>
         {quantity && (
           <div className="food-card-quantity">
