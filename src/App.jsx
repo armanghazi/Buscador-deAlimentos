@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
 import Filters from './components/Filters/Filters';
 import FoodCard from './components/FoodCard/FoodCard';
 import Footer from './components/Footer/Footer';
@@ -18,18 +16,6 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const theme = createTheme({
-    palette: {
-      mode: darkMode ? 'dark' : 'light',
-      primary: {
-        main: '#1976d2',
-      },
-      secondary: {
-        main: '#dc004e',
-      },
-    },
-  });
 
   useEffect(() => {
     loadInitialProducts();
@@ -104,79 +90,77 @@ const App = () => {
   const displayedProducts = activeTab === 'favorites' ? favorites : filteredProducts;
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
-        <header className="app-header">
-          <h1>OpenFoodFacts - Buscador</h1>
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="theme-toggle-button"
-          >
-            {darkMode ? '☀️' : '🌙'}
-          </button>
-        </header>
+    <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
+      <header className="app-header">
+        <h1>OpenFoodFacts - Buscador</h1>
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          className="theme-toggle-button"
+          aria-label={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+        >
+          {darkMode ? '☀️' : '🌙'}
+        </button>
+      </header>
 
-        <div className="tabs-container">
-          <button
-            className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveTab('all')}
-          >
-            Todos los productos
-          </button>
-          <button
-            className={`tab-button ${activeTab === 'favorites' ? 'active' : ''}`}
-            onClick={() => setActiveTab('favorites')}
-          >
-            Favoritos
-          </button>
-        </div>
-
-        <Filters
-          novaFilter={novaFilter}
-          onNovaChange={setNovaFilter}
-          nutriScoreFilter={nutriScoreFilter}
-          onNutriScoreChange={setNutriScoreFilter}
-          ecoScoreFilter={ecoScoreFilter}
-          onEcoScoreChange={setEcoScoreFilter}
-          onFilterClick={handleFilterClick}
-        />
-
-        <div className="products-grid">
-          {isLoading ? (
-            <div className="loading-message">
-              <div className="loading-spinner"></div>
-              Cargando productos...
-            </div>
-          ) : error ? (
-            <div className="error-message">
-              {error}
-              <button onClick={loadInitialProducts} className="retry-button">
-                Intentar de nuevo
-              </button>
-            </div>
-          ) : displayedProducts.length === 0 ? (
-            <div className="no-results-message">
-              {activeTab === 'favorites' 
-                ? 'No hay productos favoritos'
-                : 'No se encontraron productos que coincidan con los filtros'}
-            </div>
-          ) : (
-            displayedProducts.map(product => (
-              <FoodCard
-                key={product.code}
-                product={product}
-                isFavorite={favorites.some(fav => fav.code === product.code)}
-                onFavoriteClick={handleFavoriteClick}
-                onDetailsClick={handleDetailsClick}
-              />
-            ))
-          )}
-        </div>
-
-        <Footer />
+      <div className="tabs-container">
+        <button
+          className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
+          onClick={() => setActiveTab('all')}
+        >
+          Todos los productos
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'favorites' ? 'active' : ''}`}
+          onClick={() => setActiveTab('favorites')}
+        >
+          Favoritos
+        </button>
       </div>
-    </ThemeProvider>
+
+      <Filters
+        novaFilter={novaFilter}
+        onNovaChange={setNovaFilter}
+        nutriScoreFilter={nutriScoreFilter}
+        onNutriScoreChange={setNutriScoreFilter}
+        ecoScoreFilter={ecoScoreFilter}
+        onEcoScoreChange={setEcoScoreFilter}
+        onFilterClick={handleFilterClick}
+      />
+
+      <main className="products-grid">
+        {isLoading ? (
+          <div className="loading-message">
+            <div className="loading-spinner"></div>
+            Cargando productos...
+          </div>
+        ) : error ? (
+          <div className="error-message">
+            {error}
+            <button onClick={loadInitialProducts} className="retry-button">
+              Intentar de nuevo
+            </button>
+          </div>
+        ) : displayedProducts.length === 0 ? (
+          <div className="no-results-message">
+            {activeTab === 'favorites' 
+              ? 'No hay productos favoritos'
+              : 'No se encontraron productos que coincidan con los filtros'}
+          </div>
+        ) : (
+          displayedProducts.map(product => (
+            <FoodCard
+              key={product.code}
+              product={product}
+              isFavorite={favorites.some(fav => fav.code === product.code)}
+              onFavoriteClick={handleFavoriteClick}
+              onDetailsClick={handleDetailsClick}
+            />
+          ))
+        )}
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
