@@ -9,9 +9,9 @@ Una aplicación web moderna para buscar y filtrar productos alimenticios utiliza
 - 🌓 Modo oscuro/claro
 - ⭐ Sistema de favoritos
 - 🏷️ Filtros avanzados:
-  - Clasificación NOVA
-  - Nutri-Score
-  - Eco-Score
+  - Clasificación NOVA (Clasifica según el grado de procesamiento)
+  - Nutri-Score (Sistema de etiquetado nutricional)
+  - Eco-Score (Impacto ambiental del producto)
 - 📱 Diseño adaptativo para móviles y tablets
 - 🌐 Integración con OpenFoodFacts API
 
