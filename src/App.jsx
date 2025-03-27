@@ -43,25 +43,24 @@ const App = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const data = await getAllFoods();
-      console.log('Loaded data:', data); // Debug log
-      if (data && Array.isArray(data)) {
-        const validProducts = data.filter(product => 
-          product && 
-          product.product_name && 
-          product.image_url
-        );
-        setProducts(validProducts);
-        setFilteredProducts(validProducts);
+      console.log('Starting to load products...');
+      const products = await getAllFoods();
+      console.log('Received products in App:', {
+        isArray: Array.isArray(products),
+        length: products?.length,
+        firstItem: products?.[0]
+      });
+
+      if (Array.isArray(products) && products.length > 0) {
+        setProducts(products);
+        setFilteredProducts(products);
       } else {
-        console.error('Invalid data format:', data); // Debug log
-        setError('No se encontraron productos');
-        setProducts([]);
-        setFilteredProducts([]);
+        console.error('No valid products received:', products);
+        throw new Error('No se encontraron productos válidos');
       }
     } catch (error) {
       console.error('Error loading products:', error);
-      setError('Error al cargar los productos. Por favor, intente de nuevo.');
+      setError(`Error al cargar los productos: ${error.message}`);
       setProducts([]);
       setFilteredProducts([]);
     } finally {
