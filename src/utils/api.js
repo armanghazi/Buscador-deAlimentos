@@ -10,7 +10,7 @@ const handleResponse = async (response) => {
 export const getAllFoods = async () => {
   try {
     console.log('Fetching products from API...');
-    const url = `${BASE_URL}/search.json?page_size=1000&sort_by=popularity_key&json=true`;
+    const url = `${BASE_URL}/search.json?page_size=1000&sort_by=popularity_key&json=true`
     const headers = { 'User-Agent': 'OpenFoodFacts - Buscador/1.0' };
     
     const data = await fetch(url, { headers }).then(handleResponse);
