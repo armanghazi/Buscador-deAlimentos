@@ -26,7 +26,7 @@ Una aplicación web moderna para buscar y filtrar productos alimenticios utiliza
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/openfood.git
+https://github.com/armanghazi/Buscador-deAlimentos.git
 ```
 
 2. Instala las dependencias:
