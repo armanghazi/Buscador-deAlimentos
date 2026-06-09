@@ -16,6 +16,7 @@ export const getAllFoods = async () => {
     const url = `${BASE_URL_V2}/search?fields=${SEARCH_FIELDS}&page_size=50&sort_by=unique_scans_n`;
 
     const data = await fetch(url).then(handleResponse);
+    
 
     if (!data || !data.products) {
       throw new Error('Invalid API response: No products found');
